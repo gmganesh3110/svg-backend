@@ -15,56 +15,53 @@ import {
 @Index(['userRole'])
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  u_id: number;
 
   @Column({
     type: 'varchar',
     length: 30,
   })
-  username: string;
+  u_username: string;
 
   @Column({
     type: 'varchar',
     length: 30,
   })
-  name: string;
+  u_name: string;
 
   @Column({
     type: 'varchar',
     length: 30,
   })
-  email: string;
+  u_email: string;
 
   @Column({
     type: 'varchar',
     length: 100,
   })
-  password: string;
+  u_password: string;
 
   @Column({
     type: 'varchar',
     length: 15,
   })
-  mobile: string;
-
-  @Column({ type: 'int', default: null }) 
-  userRole: number;
+  u_mobile: string;
 
   @Column({type:'varchar',default:'Pending'})
-  status:string;
+  u_status:string;
 
   @CreateDateColumn({ type: 'datetime' })
-  createdAt: Date;
+  u_createdAt: Date;
 
   @Column({ type: 'int', default: null })
-  createdBy: number;
+  u_createdBy: number;
 
   @UpdateDateColumn({ type: 'datetime' })
-  modifiedAt: Date;
+  u_modifiedAt: Date;
 
   @Column({ type: 'int', default: null })
-  modifiedBy: number;
+  u_modifiedBy: number;
 
   @Column({ type: 'boolean', default: true })
-  activeStatus: boolean;
+  u_activeStatus: boolean;
 }
