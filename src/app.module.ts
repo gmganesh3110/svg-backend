@@ -27,6 +27,9 @@ import { UserrolepermissionsModule } from './userrolepermissions/userrolepermiss
 import { StaffModule } from './staff/staff.module';
 import { ReportsModule } from './reports/reports.module';
 import { ReportfieldsModule } from './reportfields/reportfields.module';
+import { UnitsModule } from './units/units.module';
+import { BrandsModule } from './brands/brands.module';
+import { ExpensecategoriesModule } from './expensecategories/expensecategories.module';
 
 @Module({
   imports: [
@@ -70,6 +73,9 @@ import { ReportfieldsModule } from './reportfields/reportfields.module';
     StaffModule,
     ReportsModule,
     ReportfieldsModule,
+    UnitsModule,
+    BrandsModule,
+    ExpensecategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
