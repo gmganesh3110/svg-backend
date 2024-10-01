@@ -21,15 +21,15 @@ export class Userrole {
   UR_createdAt: Date;
 
   @ManyToOne(() => User,{nullable:true})
-  @JoinColumn({ name: 'UR_createdBy' })
-  UR_createdBy: User|null;
+  @JoinColumn({ name: 'UR_createdby' })
+  UR_createdby: User|null;
 
   @UpdateDateColumn({ type: 'datetime' })
   UR_modifiedAt: Date;
 
   @ManyToOne(() => User,{nullable:true})
-  @JoinColumn({ name: 'UR_modifiedBy', })
-  UR_modifiedBy: User|null;
+  @JoinColumn({ name: 'UR_modifiedby', })
+  UR_modifiedby: User|null;
 
   @Column({ type: 'boolean', default: true })
   UR_activeStatus: boolean;

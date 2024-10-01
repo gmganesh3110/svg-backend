@@ -42,15 +42,15 @@ export class Shopdetail {
   SD_createdAt: Date;
 
   @ManyToOne(() => User, { nullable: true })
-  @JoinColumn({ name: 'SD_createdBy' })
-  SD_createdBy: User;
+  @JoinColumn({ name: 'SD_createdby' })
+  SD_createdby: User;
 
   @UpdateDateColumn({ type: 'datetime' })
   SD_modifiedAt: Date;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'SD_modifiedBy' })
-  SD_modifiedBy: User;
+  @JoinColumn({ name: 'SD_modifiedby' })
+  SD_modifiedby: User;
 
   @Column({ type: 'boolean', default: true })
   SD_activeStatus: boolean;

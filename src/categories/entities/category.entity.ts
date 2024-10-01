@@ -21,19 +21,19 @@ export class Category {
   CG_description: string;
 
   @CreateDateColumn({ type: 'datetime' })
-  CG_createdAt: Date;
+  CG_createdat: Date;
 
   @ManyToOne(() => User, { nullable: true })
-  @JoinColumn({ name: 'CG_createdBy' })
-  CG_createdBy: User;
+  @JoinColumn({ name: 'CG_createdby' })
+  CG_createdby: User;
 
   @UpdateDateColumn({ type: 'datetime' })
-  CG_modifiedAt: Date;
+  CG_modifiedat: Date;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'CG_modifiedBy' })
-  CG_modifiedBy: User;
+  @JoinColumn({ name: 'CG_modifiedby' })
+  CG_modifiedby: User;
 
   @Column({ type: 'boolean', default: true })
-  CG_activeStatus: boolean;
+  CG_activestatus: boolean;
 }

@@ -36,6 +36,7 @@ import { Userrole } from './userrole/entities/userrole.entity';
 import { CategoriesModule } from './categories/categories.module';
 import { Category } from './categories/entities/category.entity';
 import { Shopdetail } from './shopdetails/entities/shopdetail.entity';
+import { Usersubmenu } from './usersubmenu/entities/usersubmenu.entity';
 
 @Module({
   imports: [
@@ -54,7 +55,16 @@ import { Shopdetail } from './shopdetails/entities/shopdetail.entity';
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
         synchronize: true,
-        entities: [User, Usermenu, Floor, Userrole, Category, Shopdetail],
+        entities: [
+          User,
+          Usermenu,
+          Floor,
+          Userrole,
+          Category,
+          Shopdetail,
+          Usermenu,
+          Usersubmenu,
+        ],
       }),
     }),
     UserModule,
