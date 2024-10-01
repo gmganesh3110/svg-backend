@@ -57,13 +57,15 @@ export class User {
   @CreateDateColumn({ type: 'datetime' })
   U_createdat: Date;
 
-  @Column({ type: 'int' })
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'U_createdby' })
   U_createdby: number;
 
   @UpdateDateColumn({ type: 'datetime' })
   U_modifiedat: Date;
 
-  @Column({ type: 'int' })
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'U_modifiedby' })
   U_modifiedby: number;
 
   @Column({ type: 'boolean', default: true })

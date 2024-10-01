@@ -39,19 +39,19 @@ export class Shopdetail {
   SD_mobile: string;
 
   @CreateDateColumn({ type: 'datetime' })
-  SD_createdAt: Date;
+  SD_createdat: Date;
 
   @ManyToOne(() => User, { nullable: true })
   @JoinColumn({ name: 'SD_createdby' })
   SD_createdby: User;
 
   @UpdateDateColumn({ type: 'datetime' })
-  SD_modifiedAt: Date;
+  SD_modifiedat: Date;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'SD_modifiedby' })
   SD_modifiedby: User;
 
   @Column({ type: 'boolean', default: true })
-  SD_activeStatus: boolean;
+  SD_activestatus: boolean;
 }

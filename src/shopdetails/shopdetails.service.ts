@@ -1,26 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { CreateShopdetailDto } from './dto/create-shopdetail.dto';
-import { UpdateShopdetailDto } from './dto/update-shopdetail.dto';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { CreateShopdetailDto } from './dto/shopdetail.dto';
+import { EntityManager } from 'typeorm';
 
 @Injectable()
 export class ShopdetailsService {
-  create(createShopdetailDto: CreateShopdetailDto) {
-    return 'This action adds a new shopdetail';
-  }
-
-  findAll() {
-    return `This action returns all shopdetails`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} shopdetail`;
-  }
-
-  update(id: number, updateShopdetailDto: UpdateShopdetailDto) {
-    return `This action updates a #${id} shopdetail`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} shopdetail`;
+  constructor(private entityManager: EntityManager) {}
+  public async createShop(
+    createShopdetailDto: CreateShopdetailDto,
+  ): Promise<any> {
+    try {
+      const {} = createShopdetailDto;
+      const query = 'call createshopdetails(?)';
+      const params: any[] = [];
+      await this.entityManager.query(query, params);
+    } catch (error) {
+      throw new InternalServerErrorException('Internal Server');
+    }
   }
 }
