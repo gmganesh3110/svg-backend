@@ -1,3 +1,4 @@
+import { Userrole } from 'src/userrole/entities/userrole.entity';
 import {
   Column,
   CreateDateColumn,
@@ -5,13 +6,13 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   Index,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()
-@Index(['username'], { unique: true }) 
-@Index(['email'], { unique: true }) 
-@Index(['createdBy'])
-@Index(['modifiedBy'])
+@Index(['U_username'], { unique: true })
+@Index(['U_email'], { unique: true })
 export class User {
   @PrimaryGeneratedColumn()
   U_id: number;
@@ -46,21 +47,25 @@ export class User {
   })
   U_mobile: string;
 
-  @Column({type:'varchar',default:'Pending'})
-  U_status:string;
+  @Column({ type: 'varchar', default: 'Pending' })
+  U_status: string;
+
+  @ManyToOne(() => Userrole)
+  @JoinColumn({ name: 'U_userrole' })
+  U_userrole: number;
 
   @CreateDateColumn({ type: 'datetime' })
-  U_createdAt: Date;
+  U_createdat: Date;
 
-  @Column({ type: 'int', default: null })
-  U_createdBy: number;
+  @Column({ type: 'int' })
+  U_createdby: number;
 
   @UpdateDateColumn({ type: 'datetime' })
-  U_modifiedAt: Date;
+  U_modifiedat: Date;
 
-  @Column({ type: 'int', default: null })
-  U_modifiedBy: number;
+  @Column({ type: 'int' })
+  U_modifiedby: number;
 
   @Column({ type: 'boolean', default: true })
-  U_activeStatus: boolean;
+  U_activestatus: boolean;
 }

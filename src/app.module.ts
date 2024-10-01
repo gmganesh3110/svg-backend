@@ -30,6 +30,12 @@ import { ReportfieldsModule } from './reportfields/reportfields.module';
 import { UnitsModule } from './units/units.module';
 import { BrandsModule } from './brands/brands.module';
 import { ExpensecategoriesModule } from './expensecategories/expensecategories.module';
+import { Usermenu } from './usermenu/entities/usermenu.entity';
+import { Floor } from './floors/entities/floor.entity';
+import { Userrole } from './userrole/entities/userrole.entity';
+import { CategoriesModule } from './categories/categories.module';
+import { Category } from './categories/entities/category.entity';
+import { Shopdetail } from './shopdetails/entities/shopdetail.entity';
 
 @Module({
   imports: [
@@ -48,6 +54,7 @@ import { ExpensecategoriesModule } from './expensecategories/expensecategories.m
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_DATABASE'),
         synchronize: true,
+        entities: [User, Usermenu, Floor, Userrole, Category, Shopdetail],
       }),
     }),
     UserModule,
@@ -76,6 +83,7 @@ import { ExpensecategoriesModule } from './expensecategories/expensecategories.m
     UnitsModule,
     BrandsModule,
     ExpensecategoriesModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

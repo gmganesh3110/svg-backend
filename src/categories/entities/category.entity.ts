@@ -10,27 +10,30 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Userrole {
+export class Category {
   @PrimaryGeneratedColumn({ type: 'int' })
-  UR_id: number;
+  CG_id: number;
 
   @Column({ type: 'varchar' })
-  UR_role: string;
+  CG_name: string;
+
+  @Column({ type: 'varchar' })
+  CG_description: string;
 
   @CreateDateColumn({ type: 'datetime' })
-  UR_createdAt: Date;
+  CG_createdAt: Date;
 
-  @ManyToOne(() => User,{nullable:true})
-  @JoinColumn({ name: 'UR_createdBy' })
-  UR_createdBy: User|null;
+  @ManyToOne(() => User, { nullable: true })
+  @JoinColumn({ name: 'CG_createdBy' })
+  CG_createdBy: User;
 
   @UpdateDateColumn({ type: 'datetime' })
-  UR_modifiedAt: Date;
+  CG_modifiedAt: Date;
 
-  @ManyToOne(() => User,{nullable:true})
-  @JoinColumn({ name: 'UR_modifiedBy', })
-  UR_modifiedBy: User|null;
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'CG_modifiedBy' })
+  CG_modifiedBy: User;
 
   @Column({ type: 'boolean', default: true })
-  UR_activeStatus: boolean;
+  CG_activeStatus: boolean;
 }
