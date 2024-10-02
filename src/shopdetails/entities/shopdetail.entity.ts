@@ -18,6 +18,12 @@ export class Shopdetail {
   SD_name: string;
 
   @Column({ type: 'varchar' })
+  SD_profileimage: string;
+
+  @Column({ type: 'varchar' })
+  SD_banner: string;
+
+  @Column({ type: 'varchar' })
   SD_description: string;
 
   @Column({ type: 'varchar' })
