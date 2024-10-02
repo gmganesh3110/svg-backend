@@ -12,3 +12,9 @@ export class UserDataDto{
     mobile:string;
     token:string;
 }
+
+export class UpdatePasswordDto{
+    U_id:number;
+    oldPassword:string;
+    newPassword:string;
+}
