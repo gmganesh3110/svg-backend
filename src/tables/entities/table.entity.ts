@@ -11,7 +11,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Table {
+export class Tables {
   @PrimaryGeneratedColumn()
   T_id: number;
 
@@ -20,25 +20,28 @@ export class Table {
   T_floorid: Floor;
 
   @Column({ type: 'varchar' })
-  T_floorname: string;
+  T_tablename: string;
 
   @Column({ type: 'varchar' })
   T_description: string;
 
+  @Column({ type: 'int' })
+  T_seats: number;
+
   @CreateDateColumn({ type: 'datetime' })
-  T_createdAt: Date;
+  T_createdat: Date;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'T_createdBy' })
-  T_createdBy: User;
+  T_createdby: User;
 
   @UpdateDateColumn({ type: 'datetime' })
-  T_modifiedAt: Date;
+  T_modifiedat: Date;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'T_modifiedBy' })
-  T_modifiedBy: User;
+  T_modifiedby: User;
 
   @Column({ type: 'boolean', default: true })
-  T_activeStatus: boolean;
+  T_activestatus: boolean;
 }

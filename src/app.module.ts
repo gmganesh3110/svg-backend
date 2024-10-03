@@ -37,7 +37,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { Category } from './categories/entities/category.entity';
 import { Shopdetail } from './shopdetails/entities/shopdetail.entity';
 import { Usersubmenu } from './usersubmenu/entities/usersubmenu.entity';
-import { Table } from './tables/entities/table.entity';
+import { Tables } from './tables/entities/table.entity';
 
 @Module({
   imports: [
@@ -65,7 +65,7 @@ import { Table } from './tables/entities/table.entity';
           Shopdetail,
           Usermenu,
           Usersubmenu,
-          Table
+          Tables,
         ],
       }),
     }),

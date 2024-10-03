@@ -13,20 +13,20 @@ export class Floor {
     F_description:string;
 
     @CreateDateColumn({ type: 'datetime' })
-    F_createdAt: Date;
+    F_createdat: Date;
   
     @ManyToOne(() => User)
     @JoinColumn({ name: 'F_createdBy' })
-    F_createdBy: User;
+    F_createdby: User;
   
     @UpdateDateColumn({ type: 'datetime' })
-    F_modifiedAt: Date;
+    F_modifiedat: Date;
   
     @ManyToOne(() => User)
     @JoinColumn({ name: 'F_modifiedBy' })
-    F_modifiedBy: User;
+    F_modifiedby: User;
   
     @Column({ type: 'boolean', default: true })
-    F_activeStatus: boolean;
+    F_activestatus: boolean;
 }
 

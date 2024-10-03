@@ -1,34 +1,36 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { FloorsService } from './floors.service';
-import { CreateFloorDto } from './dto/create-floor.dto';
-import { UpdateFloorDto } from './dto/update-floor.dto';
+import { CreateFloorDto, GetFloorsDto, UpdateFloorDto } from './dto/floor.dto';
 
 @Controller('floors')
 export class FloorsController {
   constructor(private readonly floorsService: FloorsService) {}
 
   @Post()
-  create(@Body() createFloorDto: CreateFloorDto) {
-    return this.floorsService.create(createFloorDto);
+  public async createFloor(@Body() createFloorDto: CreateFloorDto) {
+    return this.floorsService.createFloor(createFloorDto);
   }
-
   @Get()
-  findAll() {
-    return this.floorsService.findAll();
+  public async getallFloors(@Body() getFloorsDto: GetFloorsDto): Promise<any> {
+    return this.floorsService.getallFloors(getFloorsDto);
   }
-
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.floorsService.findOne(+id);
+  public async getFloor(@Param('id') id: number): Promise<any> {
+    return this.floorsService.getFloor(id);
   }
-
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFloorDto: UpdateFloorDto) {
-    return this.floorsService.update(+id, updateFloorDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.floorsService.remove(+id);
+  public async updateFloor(
+    @Param('id') id: number,
+    @Body() updateFloorDto: UpdateFloorDto,
+  ): Promise<any> {
+    return this.floorsService.updateFloor(id,updateFloorDto);
   }
 }
