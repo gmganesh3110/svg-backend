@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { ShopdetailDto } from './dto/shopdetail.dto';
+import { ShopdetailDto, ShopDetails } from './dto/shopdetail.dto';
 import { EntityManager } from 'typeorm';
 
 @Injectable()
@@ -20,7 +20,20 @@ export class ShopdetailsService {
         SD_mobile,
         SD_createdby,
       } = createShopdetailDto;
-      const query = 'call createshopdetails(?)';
+      console.log(
+        SD_name,
+        SD_profileimage,
+        SD_banner,
+        SD_description,
+        SD_address,
+        SD_city,
+        SD_state,
+        SD_zipcode,
+        SD_shopemail,
+        SD_mobile,
+        SD_createdby,
+      );
+      const query = 'call createshopdetails(?,?,?,?,?,?,?,?,?,?,?)';
       const params: any[] = [
         SD_name,
         SD_profileimage,
@@ -36,6 +49,7 @@ export class ShopdetailsService {
       ];
       await this.entityManager.query(query, params);
     } catch (error) {
+      console.log(error)
       throw new InternalServerErrorException('Internal Server');
     }
   }
@@ -57,8 +71,9 @@ export class ShopdetailsService {
         SD_mobile,
         SD_createdby,
       } = createShopdetailDto;
-      const query = 'call updateshopdetails(?)';
+      const query = 'call updateshopdetails(?,?,?,?,?,?,?,?,?,?,?,?)';
       const params: any[] = [
+        id,
         SD_name,
         SD_profileimage,
         SD_banner,
@@ -74,6 +89,15 @@ export class ShopdetailsService {
       await this.entityManager.query(query, params);
       return 'Shop Details Updated Successfully';
     } catch (error) {
+      throw new InternalServerErrorException('Internal Server');
+    }
+  }
+
+  public async getShop(): Promise<any> {
+    try {
+      const query = `call getshopdetails()`;
+      return await this.entityManager.query(query);
+    } catch (err) {
       throw new InternalServerErrorException('Internal Server');
     }
   }
