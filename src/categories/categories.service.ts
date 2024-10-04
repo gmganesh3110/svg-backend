@@ -1,26 +1,64 @@
-import { Injectable } from '@nestjs/common';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  CreateCategoryDto,
+  getCategoriesDto,
+  UpdateCategoryDto,
+} from './dto/category.dto';
+import { EntityManager } from 'typeorm';
 
 @Injectable()
 export class CategoriesService {
-  create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
+  constructor(private entityManager: EntityManager) {}
+  public async createCategory(
+    createCategoryDto: CreateCategoryDto,
+  ): Promise<any> {
+    try {
+      const { CG_name, CG_createdby, CG_description } = createCategoryDto;
+      const query = 'call createcategory(?,?,?)';
+      const params: any[] = [CG_name, CG_description, CG_createdby];
+      await this.entityManager.query(query, params);
+      return {
+        message: 'Category Added Successfully',
+      };
+    } catch (err) {
+      console.log(err);
+      throw new InternalServerErrorException('Internal Server Error');
+    }
   }
 
-  findAll() {
-    return `This action returns all categories`;
+  public async getAllCategories(
+    getCategoriesDto: getCategoriesDto,
+  ): Promise<any> {
+    try {
+      const { CG_name, start, limit } = getCategoriesDto;
+      const query = `call getallcategories(?,?,?) `;
+      const params = [CG_name, start, limit];
+      return this.entityManager.query(query, params);
+    } catch (err) {
+      throw new InternalServerErrorException('Internal Server Error');
+    }
+  }
+  public async getCategory(id: number): Promise<any> {
+    try {
+      const query = `call getcategory(?) `;
+      const params = [id];
+      return this.entityManager.query(query, params);
+    } catch (err) {
+      throw new InternalServerErrorException('Internal Server Error');
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
-  }
-
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+  public async updateCategory(
+    id: number,
+    updateCategoryDto: UpdateCategoryDto,
+  ): Promise<any> {
+    try {
+      const { CG_name, CG_description, CG_modifiedby } = updateCategoryDto;
+      const query = 'call updatecategory(?,?,?,?)';
+      const params: any[] = [id, CG_name, CG_description, CG_modifiedby];
+      return await this.entityManager.query(query, params);
+    } catch (err) {
+      throw new InternalServerErrorException('Internal Server Error');
+    }
   }
 }
