@@ -39,6 +39,10 @@ import { Shopdetail } from './shopdetails/entities/shopdetail.entity';
 import { Usersubmenu } from './usersubmenu/entities/usersubmenu.entity';
 import { Tables } from './tables/entities/table.entity';
 import { Menuitems } from './items/entities/item.entity';
+import { PaymodesModule } from './paymodes/paymodes.module';
+import { OrderitemsModule } from './orderitems/orderitems.module';
+import { OrderpaymentsModule } from './orderpayments/orderpayments.module';
+import { Paymode } from './paymodes/entities/paymode.entity';
 
 @Module({
   imports: [
@@ -67,7 +71,8 @@ import { Menuitems } from './items/entities/item.entity';
           Usermenu,
           Usersubmenu,
           Tables,
-          Menuitems
+          Menuitems,
+          Paymode,
         ],
       }),
     }),
@@ -98,6 +103,9 @@ import { Menuitems } from './items/entities/item.entity';
     BrandsModule,
     ExpensecategoriesModule,
     CategoriesModule,
+    PaymodesModule,
+    OrderitemsModule,
+    OrderpaymentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
