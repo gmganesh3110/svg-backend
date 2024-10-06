@@ -23,10 +23,10 @@ export class AuthService {
       let user: any = await this.entityManager.query(query, params);
       user = user[0][0];
       if (user) {
-        const passwordCheck = await bcrypt.compare(password, user.password);
+        const passwordCheck = await bcrypt.compare(password, user.U_password);
         if (passwordCheck) {
-          user.password = undefined;
-          const payload = { email: user.email, sub: user.id };
+          user.U_password = undefined;
+          const payload = { email: user.U_email, sub: user.U_id };
           const token = await jwt.sign(payload, this.jwtSecret, {
             expiresIn: '1h',
           });
