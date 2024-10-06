@@ -1,34 +1,47 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ItemsService } from './items.service';
-import { CreateItemDto } from './dto/create-item.dto';
-import { UpdateItemDto } from './dto/update-item.dto';
+import {
+  CreateMenuItemDto,
+  GetMenuItems,
+  UpdateMenuItemDto,
+} from './dto/menuitems.dto';
 
 @Controller('items')
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
   @Post()
-  create(@Body() createItemDto: CreateItemDto) {
-    return this.itemsService.create(createItemDto);
+  public async createMenuItem(
+    @Body() createMenuItem: CreateMenuItemDto,
+  ): Promise<any> {
+    return this.itemsService.createMenuItem(createMenuItem);
   }
 
   @Get()
-  findAll() {
-    return this.itemsService.findAll();
+  public async getAllMenuItems(
+    @Body() getMenuItems: GetMenuItems,
+  ): Promise<any> {
+    return this.itemsService.getAllMenuItems(getMenuItems);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.itemsService.findOne(+id);
+  public async getMenuItem(@Param('id') id: number): Promise<any> {
+    return this.itemsService.getMenuItem(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateItemDto: UpdateItemDto) {
-    return this.itemsService.update(+id, updateItemDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.itemsService.remove(+id);
+  public async updateMenuItem(
+    @Param('id') id: number,
+    @Body() updateMenuItemDto: UpdateMenuItemDto,
+  ): Promise<any> {
+    return this.itemsService.updateMenuItem(id, updateMenuItemDto);
   }
 }

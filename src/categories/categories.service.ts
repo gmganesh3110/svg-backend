@@ -13,9 +13,9 @@ export class CategoriesService {
     createCategoryDto: CreateCategoryDto,
   ): Promise<any> {
     try {
-      const { CG_name, CG_createdby, CG_description } = createCategoryDto;
-      const query = 'call createcategory(?,?,?)';
-      const params: any[] = [CG_name, CG_description, CG_createdby];
+      const { CG_name, CG_createdby, CG_description,CG_color } = createCategoryDto;
+      const query = 'call createcategory(?,?,?,?)';
+      const params: any[] = [CG_name, CG_description,CG_color, CG_createdby];
       await this.entityManager.query(query, params);
       return {
         message: 'Category Added Successfully',
@@ -53,9 +53,9 @@ export class CategoriesService {
     updateCategoryDto: UpdateCategoryDto,
   ): Promise<any> {
     try {
-      const { CG_name, CG_description, CG_modifiedby } = updateCategoryDto;
-      const query = 'call updatecategory(?,?,?,?)';
-      const params: any[] = [id, CG_name, CG_description, CG_modifiedby];
+      const { CG_name, CG_description, CG_modifiedby,CG_color } = updateCategoryDto;
+      const query = 'call updatecategory(?,?,?,?,?)';
+      const params: any[] = [id, CG_name, CG_description,CG_color, CG_modifiedby];
       return await this.entityManager.query(query, params);
     } catch (err) {
       throw new InternalServerErrorException('Internal Server Error');

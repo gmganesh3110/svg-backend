@@ -38,6 +38,7 @@ import { Category } from './categories/entities/category.entity';
 import { Shopdetail } from './shopdetails/entities/shopdetail.entity';
 import { Usersubmenu } from './usersubmenu/entities/usersubmenu.entity';
 import { Tables } from './tables/entities/table.entity';
+import { Menuitems } from './items/entities/item.entity';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { Tables } from './tables/entities/table.entity';
           Usermenu,
           Usersubmenu,
           Tables,
+          Menuitems
         ],
       }),
     }),

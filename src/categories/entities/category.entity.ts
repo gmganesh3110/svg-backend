@@ -20,6 +20,9 @@ export class Category {
   @Column({ type: 'varchar' })
   CG_description: string;
 
+  @Column({ type: 'varchar' })
+  CG_color: string;
+
   @CreateDateColumn({ type: 'datetime' })
   CG_createdat: Date;
 
