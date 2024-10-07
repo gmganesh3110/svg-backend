@@ -1,34 +1,41 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { OrdertypesService } from './ordertypes.service';
-import { CreateOrdertypeDto } from './dto/create-ordertype.dto';
-import { UpdateOrdertypeDto } from './dto/update-ordertype.dto';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Put,
+  Query,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { OrderTypeService } from './ordertypes.service';
+import {
+  CreateOrderTypeDto,
+  GetOrderTypesDto,
+  UpdateOrderTypeDto,
+} from './dto/ordertype.dto';
 
 @Controller('ordertypes')
-export class OrdertypesController {
-  constructor(private readonly ordertypesService: OrdertypesService) {}
-
+export class OrderTypeController {
+  constructor(private readonly orderTypeService: OrderTypeService) {}
   @Post()
-  create(@Body() createOrdertypeDto: CreateOrdertypeDto) {
-    return this.ordertypesService.create(createOrdertypeDto);
+  async createOrderType(@Body() createOrderTypeDto: CreateOrderTypeDto) {
+    return this.orderTypeService.createOrderType(createOrderTypeDto);
   }
-
   @Get()
-  findAll() {
-    return this.ordertypesService.findAll();
+  async getAllOrderTypes(@Query() getOrderTypesDto: GetOrderTypesDto) {
+    return this.orderTypeService.getAllOrderTypes(getOrderTypesDto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ordertypesService.findOne(+id);
+  async getOrderType(@Param('id', ParseIntPipe) id: number) {
+    return this.orderTypeService.getOrderType(id);
   }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOrdertypeDto: UpdateOrdertypeDto) {
-    return this.ordertypesService.update(+id, updateOrdertypeDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.ordertypesService.remove(+id);
+  @Put(':id')
+  async updateOrderType(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateOrderTypeDto: UpdateOrderTypeDto,
+  ) {
+    return this.orderTypeService.updateOrderType(id, updateOrderTypeDto);
   }
 }

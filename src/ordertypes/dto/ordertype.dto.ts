@@ -1,4 +1,4 @@
-// src/paymode/dto/paymode.dto.ts
+// src/order-type/dto/order-type.dto.ts
 import { 
     IsString, 
     IsNotEmpty, 
@@ -9,26 +9,31 @@ import {
   } from 'class-validator';
   import { Type } from 'class-transformer';
   
- 
-  export class CreatePaymodeDto {
+  /**
+   * DTO for creating a new OrderType
+   */
+  export class CreateOrderTypeDto {
     @IsString()
     @IsNotEmpty()
-    PM_paymode: string;
+    OT_name: string;
   
     @IsString()
     @IsOptional()
-    PM_description?: string;
+    OT_description?: string;
   
     @IsNotEmpty()
     @IsNumber()
     @Type(() => Number)
-    PM_createdby: number; 
+    OT_created_by: number; // Assuming this is the user ID
   }
-
-  export class GetPaymodesDto {
+  
+  /**
+   * DTO for retrieving OrderTypes with optional filters and pagination
+   */
+  export class GetOrderTypesDto {
     @IsString()
     @IsOptional()
-    PM_paymode?: string;
+    OT_name?: string;
   
     @IsNumber()
     @Type(() => Number)
@@ -40,23 +45,26 @@ import {
     @Min(1)
     limit: number;
   }
-
-  export class UpdatePaymodeDto {
+  
+  /**
+   * DTO for updating an existing OrderType
+   */
+  export class UpdateOrderTypeDto {
     @IsString()
     @IsOptional()
-    PM_paymode?: string;
+    OT_name?: string;
   
     @IsString()
     @IsOptional()
-    PM_description?: string;
+    OT_description?: string;
   
     @IsOptional()
     @IsBoolean()
-    PM_activestatus?: boolean;
+    OT_active_status?: boolean;
   
     @IsNotEmpty()
     @IsNumber()
     @Type(() => Number)
-    PM_modifiedby: number; // Assuming this is the user ID
+    OT_modified_by: number; // Assuming this is the user ID
   }
   

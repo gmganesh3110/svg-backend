@@ -1,34 +1,44 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { OrderstatusService } from './orderstatus.service';
-import { CreateOrderstatusDto } from './dto/create-orderstatus.dto';
-import { UpdateOrderstatusDto } from './dto/update-orderstatus.dto';
+// src/order-status/order-status.controller.ts
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Put,
+  Query,
+  ParseIntPipe,
+} from '@nestjs/common';
+import { OrderStatusService } from './orderstatus.service';
+import {
+  CreateOrderStatusDto,
+  GetOrderStatusesDto,
+  UpdateOrderStatusDto,
+} from './dto/orderstatus.dto';
 
-@Controller('orderstatus')
-export class OrderstatusController {
-  constructor(private readonly orderstatusService: OrderstatusService) {}
+@Controller('order-statuses')
+export class OrderStatusController {
+  constructor(private readonly orderStatusService: OrderStatusService) {}
 
   @Post()
-  create(@Body() createOrderstatusDto: CreateOrderstatusDto) {
-    return this.orderstatusService.create(createOrderstatusDto);
+  async createOrderStatus(@Body() createOrderStatusDto: CreateOrderStatusDto) {
+    return this.orderStatusService.createOrderStatus(createOrderStatusDto);
   }
 
   @Get()
-  findAll() {
-    return this.orderstatusService.findAll();
+  async getAllOrderStatuses(@Query() getOrderStatusesDto: GetOrderStatusesDto) {
+    return this.orderStatusService.getAllOrderStatuses(getOrderStatusesDto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.orderstatusService.findOne(+id);
+  async getOrderStatus(@Param('id', ParseIntPipe) id: number) {
+    return this.orderStatusService.getOrderStatus(id);
   }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOrderstatusDto: UpdateOrderstatusDto) {
-    return this.orderstatusService.update(+id, updateOrderstatusDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.orderstatusService.remove(+id);
+  @Put(':id')
+  async updateOrderStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateOrderStatusDto: UpdateOrderStatusDto,
+  ) {
+    return this.orderStatusService.updateOrderStatus(id, updateOrderStatusDto);
   }
 }
