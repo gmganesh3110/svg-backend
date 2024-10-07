@@ -43,6 +43,12 @@ import { PaymodesModule } from './paymodes/paymodes.module';
 import { OrderitemsModule } from './orderitems/orderitems.module';
 import { OrderpaymentsModule } from './orderpayments/orderpayments.module';
 import { Paymode } from './paymodes/entities/paymode.entity';
+import { Order } from './orders/entities/order.entity';
+import { Orderitems } from './orderitems/entities/orderitem.entity';
+import { Orderpayments } from './orderpayments/entities/orderpayment.entity';
+import { Ordertype } from './ordertypes/entities/ordertype.entity';
+import { OrderstatusModule } from './orderstatus/orderstatus.module';
+import { Orderstatus } from './orderstatus/entities/orderstatus.entity';
 
 @Module({
   imports: [
@@ -73,6 +79,11 @@ import { Paymode } from './paymodes/entities/paymode.entity';
           Tables,
           Menuitems,
           Paymode,
+          Order,
+          Orderitems,
+          Orderpayments,
+          Ordertype,
+          Orderstatus
         ],
       }),
     }),
@@ -106,6 +117,7 @@ import { Paymode } from './paymodes/entities/paymode.entity';
     PaymodesModule,
     OrderitemsModule,
     OrderpaymentsModule,
+    OrderstatusModule,
   ],
   controllers: [AppController],
   providers: [AppService],
